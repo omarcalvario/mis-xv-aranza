@@ -51,12 +51,29 @@ music.addEventListener('play', () => updateMusicButton(true));
 music.addEventListener('pause', () => updateMusicButton(false));
 
 const sections = document.querySelectorAll('.invitacion > section');
+const supportsScrollTimeline = 'CSS' in window && CSS.supports('animation-timeline: view()');
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.add('has-section-transitions');
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         for (const entry of entries) {
             if (!entry.isIntersecting) continue;
             entry.target.classList.add('is-visible');
+            if (entry.target.classList.contains('mensaje-seccion')) {
+                entry.target.querySelector('.familia')?.classList.add('animate__animated', 'animate__fadeInUp');
+                if (supportsScrollTimeline) {
+                    entry.target.classList.add('s2-parallax-ready');
+                } else {
+                    entry.target.querySelectorAll('.s2-anim').forEach((element) => {
+                        element.classList.add('animate__animated');
+                    });
+                }
+            }
+            if (entry.target.classList.contains('eventos')) {
+                entry.target.querySelector('.eventos-contenedor')?.classList.add('animate__animated', 'animate__fadeInUp');
+            }
+            if (entry.target.classList.contains('confirmacion')) {
+                entry.target.querySelector('.confirmacion-contenido')?.classList.add('animate__animated', 'animate__fadeInUp');
+            }
             observer.unobserve(entry.target);
         }
     }, { threshold: 0.12 });

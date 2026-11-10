@@ -9,6 +9,7 @@
     --ink: #071d45;
     --blue: #315f91;
     --gold: #d29d20;
+    --animate-duration: 1s;
 }
 
 html {
@@ -49,7 +50,7 @@ body::after {
 @media (prefers-reduced-motion: no-preference) {
     .has-section-transitions .invitacion > section {
         opacity: .82;
-        transition: opacity 1s ease-in-out;
+        transition: opacity 2s ease-in-out;
     }
     .has-section-transitions .invitacion > section.is-visible { opacity: 1; }
 }
@@ -92,6 +93,13 @@ body::after {
     flex-direction: column;
     align-items: center;
 }
+.portada .animate__animated {
+    --animate-duration: 1s;
+    animation-delay: var(--hero-animation-delay, 0s);
+}
+.hero-delay-1 { --hero-animation-delay: 0s; }
+.hero-delay-2, .hero-delay-3 { --hero-animation-delay: 1s; }
+.hero-delay-4, .hero-delay-5 { --hero-animation-delay: 2s; }
 .subtitulo {
     font-size: clamp(12px, 1.9svh, 18px);
     font-weight: 500;
@@ -150,6 +158,55 @@ body::after {
     height: auto;
     pointer-events: none;
 }
+.has-section-transitions .mensaje-flores,
+.has-section-transitions .mensaje-flores-inferior {
+    opacity: 0;
+    transition: opacity .9s ease, transform .9s ease;
+}
+.has-section-transitions .mensaje-flores { transform: translate3d(28px, -24px, 0) scale(.96); }
+.has-section-transitions .mensaje-flores-inferior { transform: translate3d(-28px, 24px, 0) scale(.96); }
+.has-section-transitions .mensaje-seccion.is-visible .mensaje-flores,
+.has-section-transitions .mensaje-seccion.is-visible .mensaje-flores-inferior {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+}
+@supports (animation-timeline: view()) {
+    .has-section-transitions .mensaje-flores {
+        animation: parallaxFlorSuperior linear both;
+        animation-timeline: view(block);
+        animation-range: cover 0% cover 55%;
+        transition: none;
+    }
+    .has-section-transitions .mensaje-flores-inferior {
+        animation: parallaxFlorInferior linear both;
+        animation-timeline: view(block);
+        animation-range: cover 0% cover 55%;
+        transition: none;
+    }
+    .has-section-transitions .mensaje-seccion.is-visible.s2-parallax-ready .s2-anim {
+        animation: parallaxTexto linear both;
+        animation-timeline: view(block);
+        animation-range: entry 0% exit 100%;
+    }
+}
+@keyframes parallaxFlorSuperior {
+    0% { opacity: 0; transform: translate3d(28px, -30px, 0) scale(.96); }
+    35% { opacity: 1; transform: translate3d(0, 8px, 0) scale(1); }
+    75% { opacity: 1; transform: translate3d(0, 12px, 0) scale(1.01); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes parallaxFlorInferior {
+    0% { opacity: 0; transform: translate3d(-28px, 30px, 0) scale(.96); }
+    35% { opacity: 1; transform: translate3d(0, -8px, 0) scale(1); }
+    75% { opacity: 1; transform: translate3d(0, -12px, 0) scale(1.01); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes parallaxTexto {
+    0% { opacity: 0; translate: 0 28px; }
+    25% { opacity: 1; translate: 0 0; }
+    65% { opacity: 1; translate: 0 -8px; }
+    100% { opacity: 1; translate: 0 -20px; }
+}
 .contador {
     width: min(100%, 520px);
     margin: 0 auto;
@@ -172,6 +229,14 @@ body::after {
 .contador-item span { font-size: clamp(18px, 3.4vw, 30px); font-weight: 500; line-height: 1; color: #527da9; font-variant-numeric: tabular-nums; }
 .contador-item small { margin-top: 5px; font-size: clamp(8px, 1.3vw, 11px); color: #527da9; }
 .familia { max-width: 600px; margin: 50px auto 0; text-align: center; }
+.mensaje-seccion .s2-anim {
+    --animate-duration: 1s;
+    animation-delay: var(--s2-animation-delay, 0s);
+}
+.s2-delay-1 { --s2-animation-delay: 0s; }
+.s2-delay-2 { --s2-animation-delay: 1s; }
+.s2-delay-3 { --s2-animation-delay: 2s; }
+.s2-delay-4 { --s2-animation-delay: 3s; }
 .titulo-seccion { font-size: clamp(14px, 2vw, 18px); font-weight: 500; letter-spacing: .15em; line-height: 1.6; margin-bottom: 22px; }
 .nombres { font-family: 'Ephesis', cursive; font-size: clamp(25px, 4vw, 34px); line-height: 1.25; }
 .padrinos-titulo { margin-top: 36px; margin-bottom: 22px; }
@@ -278,4 +343,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #315f91; outline-offs
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; scroll-snap-type: none; }
     .invitacion > section { opacity: 1 !important; transition: none !important; }
+    .portada .animate__animated { animation: none !important; }
+    .mensaje-seccion .s2-anim { animation: none !important; }
+    .mensaje-flores, .mensaje-flores-inferior { opacity: 1 !important; transform: none !important; animation: none !important; }
 }
