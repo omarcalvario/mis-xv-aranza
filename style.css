@@ -1,0 +1,181 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    color-scheme: light;
+    --ink: #071d45;
+    --blue: #315f91;
+    --gold: #d29d20;
+}
+
+html { scroll-behavior: smooth; }
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+    background: #dfe5ea;
+    color: var(--ink);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.invitacion {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    background: #f5f4ef url("IMG/Fondo.jpg") center top / 100% 100% no-repeat;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .12);
+}
+
+.portada {
+    height: 100svh;
+    min-height: 420px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(10px, 2.5svh, 28px) 18px;
+    text-align: center;
+}
+.portada-contenido { position: relative; z-index: 2; width: 100%; }
+.indicador-seccion {
+    width: fit-content;
+    margin: 0 auto clamp(8px, 1.6svh, 16px);
+    padding: 5px 10px;
+    border: 1px solid rgba(210, 157, 32, .7);
+    color: var(--ink);
+    font-size: clamp(9px, 1.4svh, 11px);
+    font-weight: 700;
+    letter-spacing: .12em;
+}
+.indicador-seccion span { font-weight: 500; }
+.subtitulo {
+    font-size: clamp(12px, 1.9svh, 18px);
+    font-weight: 500;
+    letter-spacing: .28em;
+}
+.nombre-aranza {
+    display: block;
+    width: min(76vw, 440px);
+    height: auto;
+    margin: 0 auto 2px;
+}
+.fecha {
+    font-family: Georgia, serif;
+    font-size: clamp(12px, 1.9svh, 18px);
+    letter-spacing: .2em;
+    margin-bottom: clamp(6px, 1.2svh, 14px);
+}
+.foto-wrapper { width: min(76vw, 28svh, 350px); margin-inline: auto; }
+.foto-quinceanera { display: block; width: 100%; height: auto; }
+.texto1 { line-height: 0; }
+.caja-de-texto { display: block; width: min(76vw, 300px); height: auto; margin: clamp(4px, .8svh, 8px) auto 0; }
+.titulo-faltan {
+    font-family: 'Ephesis', cursive;
+    font-size: clamp(34px, 6svh, 60px);
+    font-weight: 400;
+    line-height: 1;
+    margin: clamp(4px, .8svh, 8px) 0 0;
+}
+
+.mensaje-seccion {
+    position: relative;
+    padding: 20px clamp(20px, 6vw, 70px) 65px;
+    text-align: center;
+}
+.contador {
+    width: min(100%, 520px);
+    margin: 0 auto;
+    display: flex;
+    border: 1px solid var(--gold);
+    background: rgba(255, 255, 255, .6);
+    padding: 14px 6px;
+}
+.contador-item {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid rgba(7, 29, 69, .25);
+}
+.contador-item:last-child { border-right: 0; }
+.contador-item span { font-size: clamp(22px, 4vw, 34px); font-weight: 500; line-height: 1; color: #527da9; font-variant-numeric: tabular-nums; }
+.contador-item small { margin-top: 7px; font-size: clamp(9px, 1.5vw, 12px); color: #527da9; }
+.familia { max-width: 600px; margin: 50px auto 0; text-align: center; }
+.titulo-seccion { font-size: clamp(14px, 2vw, 18px); font-weight: 500; letter-spacing: .15em; line-height: 1.6; margin-bottom: 22px; }
+.nombres { font-family: 'Ephesis', cursive; font-size: clamp(25px, 4vw, 34px); line-height: 1.25; }
+.padrinos-titulo { margin-top: 36px; margin-bottom: 22px; }
+
+.eventos { padding: 35px 20px 70px; text-align: center; }
+.eventos-contenedor {
+    position: relative;
+    width: min(100%, 950px);
+    margin-inline: auto;
+    padding: 55px clamp(25px, 6vw, 70px);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 50px;
+}
+.marco-eventos { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; z-index: 1; pointer-events: none; }
+.evento { position: relative; z-index: 2; text-align: center; min-width: 0; }
+.icono-evento { display: block; width: 65px; height: 65px; object-fit: contain; margin: 0 auto 10px; }
+.evento h2 { font-family: 'Ephesis', cursive; font-size: clamp(30px, 4vw, 40px); font-weight: 400; line-height: 1; margin-bottom: 18px; }
+.nombre-lugar { font-size: clamp(10px, 1.3vw, 13px); font-weight: 600; letter-spacing: .1em; color: var(--blue); margin-bottom: 7px; }
+.direccion { font-size: clamp(10px, 1.2vw, 12px); font-weight: 500; line-height: 1.6; color: var(--blue); margin-bottom: 10px; }
+.hora { font-size: 12px; font-weight: 500; letter-spacing: .15em; margin-bottom: 18px; }
+.boton-ubicacion, .boton-whatsapp {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--gold);
+    background: rgba(255, 255, 255, .85);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+}
+.boton-ubicacion:hover, .boton-whatsapp:hover { background: white; }
+
+.confirmacion { min-height: 340px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 30px 20px 60px; }
+.confirmacion-contenido { position: relative; z-index: 2; }
+.confirmacion h2 { font-family: 'Ephesis', cursive; font-size: clamp(54px, 7vw, 72px); font-weight: 400; line-height: 1; margin-bottom: 10px; }
+.icono-confirmacion { width: 75px; height: 75px; object-fit: contain; display: block; margin: 0 auto 10px; }
+.confirmacion p { font-size: 12px; font-weight: 500; line-height: 1.7; margin-bottom: 22px; }
+.boton-whatsapp img { width: 20px; height: 20px; object-fit: contain; }
+
+.boton-musica {
+    position: fixed;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 5000;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: rgba(255, 255, 255, .96);
+    color: var(--ink);
+    font: 20px 'Montserrat', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, .12);
+}
+a:focus-visible, button:focus-visible { outline: 3px solid #315f91; outline-offset: 3px; }
+
+@media (min-width: 700px) {
+    .portada { padding-inline: 28px; }
+    .foto-wrapper { width: min(30vw, 30svh, 360px); }
+    .nombre-aranza { width: min(55vw, 500px); }
+    .caja-de-texto { width: min(50vw, 400px); }
+    .eventos-contenedor { grid-template-columns: 1fr 1fr; gap: clamp(25px, 5vw, 70px); align-items: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
