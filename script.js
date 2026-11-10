@@ -23,6 +23,20 @@ window.setInterval(updateCountdown, 1000);
 
 const music = document.getElementById('musica');
 const musicButton = document.getElementById('botonMusica');
+const whatsappLink = document.querySelector('.boton-whatsapp');
+
+if (whatsappLink) {
+    const whatsappMessage = [
+        '¡Hola! Confirmo mi asistencia a tus XV años. 💖',
+        '',
+        'Número de personas que asistiremos: ___',
+        '',
+        '¡Muchas gracias por la invitación! ✨',
+    ].join('\n');
+    const whatsappUrl = new URL('https://wa.me/522431294233');
+    whatsappUrl.searchParams.set('text', whatsappMessage);
+    whatsappLink.href = whatsappUrl.toString();
+}
 
 function updateMusicButton(isPlaying) {
     musicButton.dataset.playing = String(isPlaying);
@@ -52,33 +66,39 @@ music.addEventListener('pause', () => updateMusicButton(false));
 
 const sections = document.querySelectorAll('.invitacion > section');
 const supportsScrollTimeline = 'CSS' in window && CSS.supports('animation-timeline: view()');
-if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function animateSectionContent(section, useParallax) {
+    if (section.classList.contains('mensaje-seccion')) {
+        section.querySelector('.familia')?.classList.add('animate__animated', 'animate__fadeInUp');
+        section.querySelectorAll('.s2-anim').forEach((element) => {
+            element.classList.add('animate__animated');
+        });
+        if (useParallax && supportsScrollTimeline) section.classList.add('s2-parallax-ready');
+    }
+    if (section.classList.contains('eventos')) {
+        section.querySelector('.eventos-contenedor')?.classList.add('animate__animated', 'animate__fadeInUp');
+    }
+    if (section.classList.contains('confirmacion')) {
+        section.querySelector('.confirmacion-contenido')?.classList.add('animate__animated', 'animate__fadeInUp');
+    }
+}
+
+if ('IntersectionObserver' in window && !reduceMotion) {
     document.documentElement.classList.add('has-section-transitions');
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         for (const entry of entries) {
             if (!entry.isIntersecting) continue;
             entry.target.classList.add('is-visible');
-            if (entry.target.classList.contains('mensaje-seccion')) {
-                entry.target.querySelector('.familia')?.classList.add('animate__animated', 'animate__fadeInUp');
-                if (supportsScrollTimeline) {
-                    entry.target.classList.add('s2-parallax-ready');
-                } else {
-                    entry.target.querySelectorAll('.s2-anim').forEach((element) => {
-                        element.classList.add('animate__animated');
-                    });
-                }
-            }
-            if (entry.target.classList.contains('eventos')) {
-                entry.target.querySelector('.eventos-contenedor')?.classList.add('animate__animated', 'animate__fadeInUp');
-            }
-            if (entry.target.classList.contains('confirmacion')) {
-                entry.target.querySelector('.confirmacion-contenido')?.classList.add('animate__animated', 'animate__fadeInUp');
-            }
+            animateSectionContent(entry.target, true);
             observer.unobserve(entry.target);
         }
     }, { threshold: 0.12 });
 
     sections.forEach((section) => sectionObserver.observe(section));
 } else {
-    sections.forEach((section) => section.classList.add('is-visible'));
+    sections.forEach((section) => {
+        section.classList.add('is-visible');
+        if (!reduceMotion) animateSectionContent(section, false);
+    });
 }
