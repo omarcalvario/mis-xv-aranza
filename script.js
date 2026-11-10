@@ -25,9 +25,9 @@ const music = document.getElementById('musica');
 const musicButton = document.getElementById('botonMusica');
 
 function updateMusicButton(isPlaying) {
+    musicButton.dataset.playing = String(isPlaying);
     musicButton.setAttribute('aria-pressed', String(isPlaying));
     musicButton.setAttribute('aria-label', isPlaying ? 'Pausar música' : 'Reproducir música');
-    musicButton.textContent = isPlaying ? '♫' : '♪';
 }
 
 // El navegador puede bloquear autoplay con sonido; el botón permite iniciarlo tras un toque.
@@ -49,3 +49,19 @@ musicButton.addEventListener('click', async () => {
 
 music.addEventListener('play', () => updateMusicButton(true));
 music.addEventListener('pause', () => updateMusicButton(false));
+
+const sections = document.querySelectorAll('.invitacion > section');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('has-section-transitions');
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        }
+    }, { threshold: 0.12 });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+} else {
+    sections.forEach((section) => section.classList.add('is-visible'));
+}

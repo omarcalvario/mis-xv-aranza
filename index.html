@@ -28,51 +28,37 @@
          SECCIÓN 1 — PORTADA
     =================================================== -->
     <section class="portada" id="hero" aria-label="Sección 1 de 4: portada">
+        <img src="IMG/flores-1.png" class="decoracion-flores portada-flores" alt="" aria-hidden="true">
+        <img src="IMG/flores-2.png" class="decoracion-flores portada-flores portada-flores--derecha" alt="" aria-hidden="true">
         <div class="portada-contenido">
-            <p class="indicador-seccion" aria-label="Primera sección">01 <span>/ 04 · PORTADA</span></p>
-            <p class="subtitulo">MIS XV AÑOS</p>
-            <img src="IMG/Nombre.gif" class="nombre-aranza" alt="Aranza">
-            <p class="fecha">09 · Enero · 2027</p>
+            <div class="portada-titular">
+                <p class="subtitulo">MIS XV AÑOS</p>
+                <img src="IMG/Nombre.gif" class="nombre-aranza" alt="Aranza">
+                <p class="fecha">09 · Enero · 2027</p>
+            </div>
             <div class="foto-wrapper">
                 <img src="IMG/Foto.png" class="foto-quinceanera" alt="Aranza">
             </div>
             <div class="texto1">
                 <img src="IMG/Caja_texto.png" class="caja-de-texto" alt="">
             </div>
-            <h2 class="titulo-faltan">¡Faltan!</h2>
+             <h2 class="titulo-faltan">¡Faltan!</h2>
+            <div class="contador" aria-label="Cuenta regresiva para la celebración">
+                <div class="contador-item"><span id="dias">00</span><small>Días</small></div>
+                <div class="contador-item"><span id="horas">00</span><small>Horas</small></div>
+                <div class="contador-item"><span id="minutos">00</span><small>Minutos</small></div>
+                <div class="contador-item"><span id="segundos">00</span><small>Segundos</small></div>
+            </div>
         </div>
     </section>
 
     <!-- ==================================================
-         SECCIÓN 2 — MENSAJE + CUENTA REGRESIVA
+     SECCIÓN 2 — MENSAJE Y FAMILIA
     =================================================== -->
 
     <section class="mensaje-seccion">
-  
-        <div class="contador">
-
-            <div class="contador-item">
-                <span id="dias"> 00 </span>
-                <small> Días </small>
-            </div>
-
-            <div class="contador-item">
-
-                <span id="horas"> 00 </span>
-                <small> Horas </small>
-            </div>
-
-            <div class="contador-item">
-                <span id="minutos"> 00 </span>
-                <small> Minutos </small>
-            </div>
-
-            <div class="contador-item">
-                <span id="segundos"> 00 </span>
-                <small> Segundos </small>
-            </div>
-
-        </div>
+        <img src="IMG/flores-2.png" class="decoracion-flores mensaje-flores" alt="" aria-hidden="true">
+        <img src="IMG/flores-3.png" class="decoracion-flores mensaje-flores-inferior" alt="" aria-hidden="true">
 
         <!-- ==========================================
              PADRES
@@ -149,7 +135,10 @@
      BOTÓN DE MÚSICA
 ================================================== -->
 
-<button class="boton-musica" id="botonMusica" type="button" aria-label="Reproducir música" aria-pressed="false">♫</button>
+<button class="boton-musica" id="botonMusica" type="button" aria-label="Reproducir música" aria-pressed="false" data-playing="false">
+    <svg class="icono-musica-silencio" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.88889 16.0001H2C1.44772 16.0001 1 15.5524 1 15.0001V9.00007C1 8.44778 1.44772 8.00007 2 8.00007H5.88889L11.1834 3.66821C11.3971 3.49335 11.7121 3.52485 11.887 3.73857C11.9601 3.8279 12 3.93977 12 4.05519V19.9449C12 20.2211 11.7761 20.4449 11.5 20.4449C11.3846 20.4449 11.2727 20.405 11.1834 20.3319L5.88889 16.0001ZM20.4142 12.0001L23.9497 15.5356L22.5355 16.9498L19 13.4143L15.4645 16.9498L14.0503 15.5356L17.5858 12.0001L14.0503 8.46454L15.4645 7.05032L19 10.5859L22.5355 7.05032L23.9497 8.46454L20.4142 12.0001Z"></path></svg>
+    <svg class="icono-musica-sonido" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 16.0001H5.88889L11.1834 20.3319C11.2727 20.405 11.3846 20.4449 11.5 20.4449C11.7761 20.4449 12 20.2211 12 19.9449V4.05519C12 3.93977 11.9601 3.8279 11.887 3.73857C11.7121 3.52485 11.3971 3.49335 11.1834 3.66821L5.88889 8.00007H2C1.44772 8.00007 1 8.44778 1 9.00007V15.0001C1 15.5524 1.44772 16.0001 2 16.0001ZM23 12C23 15.292 21.5539 18.2463 19.2622 20.2622L17.8445 18.8444C19.7758 17.1937 21 14.7398 21 12C21 9.26016 19.7758 6.80629 17.8445 5.15557L19.2622 3.73779C21.5539 5.75368 23 8.70795 23 12ZM18 12C18 10.0883 17.106 8.38548 15.7133 7.28673L14.2842 8.71584C15.3213 9.43855 16 10.64 16 12C16 13.36 15.3213 14.5614 14.2842 15.2841L15.7133 16.7132C17.106 15.6145 18 13.9116 18 12Z"></path></svg>
+</button>
 
 <!-- AUDIO -->
 <audio id="musica" loop autoplay preload="auto">
