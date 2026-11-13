@@ -23,10 +23,11 @@ body {
     min-height: 100vh;
     overflow-x: clip;
     background-color: #dfe5ea;
-    background-image: url("IMG/fondo-web-seamless.webp");
-    background-repeat: repeat;
+    background-image: url("IMG/fondo-acuarela-azul-cielo.webp");
+    background-repeat: no-repeat;
     background-position: top center;
-    background-size: 100vw auto;
+    background-size: cover;
+    background-attachment: fixed;
     color: var(--ink);
     font-family: 'Montserrat', sans-serif;
 }
@@ -341,6 +342,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid #315f91; outline-offs
 }
 
 @media (max-width: 600px) {
+    body {
+        background-size: 100% auto;
+        background-repeat: repeat-y;
+        background-position: top center;
+    }
     .invitacion { display: flex; flex-direction: column; gap: 0; }
     .mensaje-seccion, .eventos, .confirmacion { padding-block: 50px; }
     .portada-contenido { justify-content: flex-start; }
